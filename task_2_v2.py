@@ -4,18 +4,13 @@ import random
 from collections import Counter
 
 def get_numbers_ticket(minimum, maximum, quantity) -> list:
-    if not validate(minimum, maximum, quantity):
+    if not validate(minimum) or not validate(maximum):
       raise ValueError("Invalid values")
 
     return sorted(random.sample(range(minimum, maximum + 1), quantity))
 
-def validate(minimum, maximum, quantity) -> bool:
-    if minimum == 1 and maximum == 49 and quantity == 6:
-        return True
-    
-    if minimum == 1 and maximum == 36 and quantity == 5:
-        return True
-    return False
+def validate(value) -> bool:
+    return value >= 1 and value <= 1000
 
 def get_ticket_result(ticket: list) -> bool:
     same_numbers_count = Counter(ticket)
